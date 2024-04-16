@@ -46,8 +46,9 @@ class GammaCommands():
 		self._log = logging.getLogger("gsu.cmds." + self.__class__.__name__)
 		self._args = args
 		self._protocolhandler = {
-			"v1":		GSProtocolHandlerVers1,
-			"v2":		GSProtocolHandlerVers2,
+			"v1":			GSProtocolHandlerVers1,
+			"v2_9600":		GSProtocolHandlerVers2,
+			"v2_460800":	GSProtocolHandlerVers2,
 		}[args["protocol"]]
 		self._conn = None
 		self._device = None
@@ -125,8 +126,9 @@ class GammaCommands():
 		backend = backendclass(filename, self._args)
 		backend.initdata(logsize, logdata)
 		parserclass = {
-			"v1":		LogDataParserVers1,
-			"v2":		LogDataParserVers2,
+			"v1":			LogDataParserVers1,
+			"v2_9600":		LogDataParserVers2,
+			"v2_460800":	LogDataParserVers2,
 		}[self._args["protocol"]]
 		parserclass(logdata, backend).parse(logsize)
 		backend.close()

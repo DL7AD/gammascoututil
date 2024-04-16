@@ -32,8 +32,9 @@ class RS232Connection(GSConnection):
 		GSConnection.__init__(self, args)
 		self._log = logging.getLogger("gsu.traffic." + self.__class__.__name__)
 		baudrate = {
-			"v1":		2400,
-			"v2":		9600,
+			"v1":			2400,
+			"v2_9600":		9600,
+			"v2_460800":	460800
 		}[args["protocol"]]
 		self._conn = serial.Serial(args["device"], baudrate = baudrate, bytesize = 7, parity = "E", stopbits = 1, timeout = 0.1)
 		self._rxthread = RS232ReaderThread(self._conn, self._rxbuf.push)

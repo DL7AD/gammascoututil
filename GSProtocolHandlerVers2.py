@@ -35,7 +35,7 @@ from RE import RE
 OnlineResults = collections.namedtuple("OnlineResults", [ "utctimestamp", "interval", "counts" ])
 
 class GSProtocolHandlerVers2(GSProtocolHandler):
-	_version_pc_regex = RE("Version ([0-9]\.[0-9]{2}) " + RE.GDECIMAL + " " + RE.GHEXADECIMAL + " ([0-9]{2})\.([0-9]{2})\.([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})")
+	_version_pc_regex = RE("Version ([0-9]\.[0-9A-Za-z]{2,6}) " + RE.GDECIMAL + " " + RE.GHEXADECIMAL + " ([0-9]{2})\.([0-9]{2})\.([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})")
 	_version_v1_regex = re.compile("^ Version (?P<version>[0-9]\.[0-9]{2})$")
 	_config_firstline_regex = RE(RE.GHEXADECIMAL + " " + RE.GHEXADECIMAL + " " + RE.GHEXADECIMAL)
 	_online_regex = re.compile("^I(?P<interval>[0-9a-f]{4})(?P<counts>[0-9a-f]{6})$")

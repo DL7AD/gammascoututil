@@ -503,7 +503,7 @@ if __name__ == "__main__":
 	c.addoption(o)
 
 	o = CmdLineOption("protocol", "p", "protocol").setdescription("This is a protocol definition of some kind")
-	o.setoccurence(1).settakesparameters(True, "protocol").setparser(EnumParser(set([ "v1", "v2", "legacy" ])))
+	o.setoccurence(1).settakesparameters(True, "protocol").setparser(EnumParser(set([ "v1", "v2_9600", "v2_460800", "legacy" ])))
 	c.addoption(o)
 
 	o = CmdLineOption("otherstuff", "q", None).setdescription("This is some datetime option")

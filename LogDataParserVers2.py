@@ -47,6 +47,13 @@ class LogDataParserVers2(LogDataParser):
 					year += 2000
 					self._log.debug("0x%x: Set Date: %04d-%02d-%02d %2d:%02d" % (self._offset, year, month, day, hour, minute))
 					self._curdate = datetime.datetime(year, month, day, hour, minute)
+				if peek == 0xed:
+					data = self._nextbytes(7)[1:]
+					data = LogDataParser._hexdecify(data)
+					(second, minute, hour, day, month, year) = data
+					year += 2000
+					self._log.debug("0x%x: Set Date: %04d-%02d-%02d %2d:%02d:%02d" % (self._offset, year, month, day, hour, minute, second))
+					self._curdate = datetime.datetime(year, month, day, hour, minute, second)
 				elif peek == 0xee:
 					data = self._nextbytes(5)[1:]
 					gap = ((data[1] << 8) | data[0]) * 10
@@ -105,6 +112,12 @@ class LogDataParserVers2(LogDataParser):
 					self._log.debug("0x%x: Interval 7 days" % (self._offset))
 					self._nextbytes(1)
 					self._interval = 7 * 86400
+				elif peek == 0xea:
+					self._log.debug("0x%x: Standard conversion data set (Cs137) active" % (self._offset))
+					self._nextbytes(1)
+				elif peek == 0xeb:
+					self._log.debug("0x%x: Alternative conversion data set (Co60) active" % (self._offset))
+					self._nextbytes(1)
 				elif peek == 0xf3:
 					self._log.warn("0x%x: Unknown command 0xf3" % (self._offset))
 					self._nextbytes(1)

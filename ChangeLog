@@ -27,7 +27,11 @@ Summary of changes from v0.04 to v0.05 (2013-xx-xx)
 	* Bugfix in TXT output backend (CPS and CPM are swithced)
 	* Bugfix when count values overflow (thanks to Erik Berglund for reporting
 	this)
-
+	* Added support for 460k8 baudrate for v2 devices
+	* Added new 6 byte timestamp encoding, which implements second
+	representation additionally
+	* Added new event flags for Standard Conversion Data Set (Cs137) and
+	Alternative Conversion Data Set (Co60)
 
 Summary of changes from v0.03 to v0.04 (2012-01-06)
 ===================================================
